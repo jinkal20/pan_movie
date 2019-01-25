@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 function getAll($tbl){
 	include('connect.php');
 	$queryAll = 'SELECT * FROM '.$tbl;
@@ -8,42 +9,42 @@ function getAll($tbl){
 	if($runAll){
 		return $runAll;
 	}else{
-		$error = 'There was a problem accesing this information';
+		$error = 'There was a problem';
 		return $error;
 	}
 }
 
 function filterResults($tbl,$tbl_2,$tbl_3,$col,$col_2,$col_3,$filter){
-		include('connect.php');
+	include('connect.php');
 	$queryAll = 'SELECT * FROM '.$tbl.' a,';
-	$queryAll .= ' '.$tbl_2.' b, ';
+	$queryAll .= ' '.$tbl_2.' b,';
 	$queryAll .= ' '.$tbl_3.' c';
-	$queryAll .= ' WHERE a.' .$col.' = c.'.$col;
-	$queryAll .= ' AND b.' .$col_2.' = c.'.$col_2;
-	$queryAll .= ' AND b.' .$col_3.' = "'.$filter.'"';
-	$runAll = $pdo->query($queryAll);
+	$queryAll .= ' WHERE a.'.$col.' = c.'.$col;
+	$queryAll .= ' AND b.'.$col_2.' = c.'.$col_2;
+	$queryAll .= ' AND b.'.$col_3.' = "'.$filter.'"';
 
-	//echo $queryAll;exit;
+	// echo $queryAll;exit;
+
+	$runAll = $pdo->query($queryAll);
 
 	if($runAll){
 		return $runAll;
 	}else{
-		$error = 'There was a problem accesing this information';
+		$error = 'There was a problem';
 		return $error;
 	}
 }
 
 function getSingle($tbl,$col,$value){
-			include('connect.php');
-	$queryAll = 'SELECT * FROM '.$tbl. ' WHERE ' .$col. '='.$value ;
+	include ('connect.php');
 
-	$runAll = $pdo->query($queryAll);
+	$query = 'SELECT * FROM '.$tbl.' WHERE '.$col.'='.$value;
 
-	if($runAll){
-		return $runAll;
+	$runQuery = $pdo->query($query);
+	if($runQuery){
+		return $runQuery;
 	}else{
-		$error = 'There was a problem accesing this information';
+		$error = 'There was a problem';
 		return $error;
 	}
 }
-?>
