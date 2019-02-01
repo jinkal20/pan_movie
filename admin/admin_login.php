@@ -3,8 +3,12 @@
 	if(!empty($_POST['username']) && !empty($_POST['password'])){
 		$username=$_POST['username'];
 		$password=$_POST['password'];
+		$ip = $_SERVER['REMOTE_ADDR'];
 
-		login($username,$password);
+		$message = login($username,$password);
+	}else{
+		if(isset($_POST['username']) || isset($_POST['password']))
+		$message = 'Please fill login page';
 	}
 ?>
 
@@ -14,6 +18,10 @@
 	<title>Admin Login</title>
 </head>
 <body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation-float.min.css.map"></script>
+	<?php if(!empty($message)):?>
+	<p><?php echo $message;?></p>
+	<?php endif;?>
 	<form action="admin_login.php" method="POST">
 		<h2>Admin Login</h2>
 	<label>Usernane:
