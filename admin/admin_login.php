@@ -5,13 +5,18 @@
 		$password=$_POST['password'];
 		$ip = $_SERVER['REMOTE_ADDR'];
 
-		$message = login($username,$password);
+		$message = login($username,$password,$ip);
 	}else{
 		if(isset($_POST['username']) || isset($_POST['password']))
 		$message = 'Please fill login page';
 	}
 ?>
-
+<!--
+<?php
+	if ($_SESSION['failed_login'] > 3) {
+	$error[] = 'U failed to login 3 times ' . $_SESSION['failed_login'];
+	} 
+?>-->
 <html>
 <head>
 	<meta charset="utf-8">

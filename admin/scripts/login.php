@@ -25,6 +25,8 @@ function login($username, $password,$ip){
 			$id =$found_user['user_id'];
 			$_SESSION['user_id'] = $id;
 			$_SESSION['user_name'] = $found_user['user_fname'];
+			$_SESSION['last_login'] = $found_user['last_login'];
+
 
 			$update_ip_query = 'UPDATE tbl_user SET user_ip=:ip WHERE user_id ='.$id;
 			$update_ip_set=$pdo->prepare($update_ip_query);
@@ -34,6 +36,9 @@ function login($username, $password,$ip){
 					':id'=>$id
 				)
 			);
+
+			$update_login = 'UPDATE tbl_user SET last_login = CURRENT_TIMESTAMP WHERE user_id ='.$id;
+			$get_log = $pdo->query($update_login);
 
 		}
 		if(empty($id)){
