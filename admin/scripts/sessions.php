@@ -12,4 +12,3 @@
 
 		redirect_to('../admin_login.php');
 	}
-?>
